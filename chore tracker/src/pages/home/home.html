@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+
+  <h3 class="no-item" text-center *ngIf="items.length === 0">
+    <br><ion-icon name="game-controller-b" item-start></ion-icon>
+    <ion-icon name="american-football" item-start></ion-icon><br>
+    All Chores are Complete! Enjoy Some Freetime!
+
+  </h3>
+
+  <h4 text-left>
+    Current Funds Earned: ${{funds}}
+  </h4>
+
+  <ion-list>
+
+
+    <ion-item-sliding *ngFor="let item of items; let i = index">
+      
+
+      <ion-item>
+        <h2>{{item.choredesc}}</h2>
+        <p>${{item.value}}</p>
+      </ion-item>
+
+      <ion-item-options>
+        <button (click)="editItem(item, i)" ion-button color="primary" icon-start>
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+
+        <button (click)="removeItem(item._id, item.value)" ion-button color="secondary" icon-start>
+          <ion-icon name="checkmark"></ion-icon>
+          Complete
+        </button>
+
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  <ion-fab bottom right>
+    <button color="danger" (click)="addItem()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
